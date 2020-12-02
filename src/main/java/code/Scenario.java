@@ -9,12 +9,12 @@ public class Scenario {
     
     // Attributs
     private Bandeau monBandeau;
-    private HashMap<Integer, InformationMessage> listeEffets;
+    private HashMap<Integer, CoupleEffetMessage> listeCouples;
     
     
     // Constructeur
     public Scenario() {
-        listeEffets = new HashMap<>();
+        listeCouples = new HashMap<>();
     }
     
     
@@ -25,27 +25,26 @@ public class Scenario {
     
     
     // ajouterEffet()
-    public void ajouterEffet(int position, Effet monEffet, String monMessage, Font maPolice) {
-        InformationMessage infoMess = new InformationMessage(monEffet, monMessage, maPolice);
-        listeEffets.put(position, infoMess);
+    public void ajouterEffet(int position, Effet effet, InfoMessage infoMess) {
+        CoupleEffetMessage couple = new CoupleEffetMessage(effet, infoMess);
+        listeCouples.put(position, couple);
     }
     
     
     // lancerScenario()
     public void lancerScenario() {
         monBandeau = new Bandeau();
-        Font font = monBandeau.getFont();
-        Color back = monBandeau.getBackground();
-        Color fore = monBandeau.getForeground();
-        int nbrEffets = listeEffets.size();
-        InformationMessage infoMess = null;
+        int nbrEffets = listeCouples.size();
+        
+        InfoMessage infoMess = null;
+        Effet effet = null;
+        
         for (int i = 1; i < nbrEffets + 1; i++) {
             System.out.println("Effet n°" + i);
-            infoMess = listeEffets.get(i);
-            Effet effet = infoMess.getEffet();
-            String message = infoMess.getMessage();
-            Font police = infoMess.getFont();
-            effet.lancerEffet(monBandeau, message, police);
+            CoupleEffetMessage couple = listeCouples.get(i);
+            infoMess = couple.getInfoMess();
+            effet = couple.getEffet();
+            effet.lancerEffet(monBandeau, infoMess);
         }
         monBandeau.close();
         

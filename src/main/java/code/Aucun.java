@@ -8,18 +8,23 @@ import java.awt.Font;
 public class Aucun extends Effet {
 
     // Constructeur
-    public Aucun(int dureeEffet, Color couleurEffet) {
-        super(dureeEffet, couleurEffet);
+    public Aucun(int dureeEffet, Color couleurBackground) {
+        super(dureeEffet*1000, couleurBackground);
     }
     
     
     // lancerEffet()
     @Override
-    public void lancerEffet(Bandeau monBandeau, String monMessage, Font maPolice) {
-        monBandeau.setFont(maPolice);
-        monBandeau.setForeground(couleurEffet);
+    public void lancerEffet(Bandeau monBandeau, InfoMessage infoMess) {
+        Font policeMessage = infoMess.getPolice();
+        Color couleurMessage = infoMess.getCouleur();
+        String monMessage = infoMess.getMessage();
+        
+        monBandeau.setFont(policeMessage);
+        monBandeau.setForeground(couleurMessage);
         monBandeau.setMessage(monMessage);
-        monBandeau.sleep(1000*dureeEffet);
+        monBandeau.setBackground(couleurBackground);
+        monBandeau.sleep(dureeEffet);
     }
     
 }

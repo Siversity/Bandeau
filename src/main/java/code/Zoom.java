@@ -8,26 +8,31 @@ import java.awt.Font;
 public class Zoom extends Effet {
     
     // Attribut
-    private int tailleZoom;
+    private int puissanceZoom;
     
     
     // Constructeur
-    public Zoom(int dureeEffet, Color couleurEffet, int tailleZoom) {
-        super(dureeEffet, couleurEffet);
-        this.tailleZoom = tailleZoom;
+    public Zoom(int dureeEffet, Color couleurBackground, int tailleZoom) {
+        super(dureeEffet*1000, couleurBackground);
+        this.puissanceZoom = tailleZoom;
     }
     
     @Override
-    public void lancerEffet(Bandeau monBandeau, String monMessage, Font maPolice) {
-        int zoomMax = maPolice.getSize()*tailleZoom;
-        int dureeZoomAffiche = (dureeEffet*1000)/zoomMax;
+    public void lancerEffet(Bandeau monBandeau, InfoMessage infoMess) {
+        Font policeMessage = infoMess.getPolice();
+        Color couleurMessage = infoMess.getCouleur();
+        String monMessage = infoMess.getMessage();
         
-        monBandeau.setFont(maPolice);
-        monBandeau.setForeground(couleurEffet);
+        int zoomMax = policeMessage.getSize()*puissanceZoom;
+        int dureeZoomAffiche = dureeEffet/zoomMax;
+        
+        monBandeau.setFont(policeMessage);
+        monBandeau.setForeground(couleurMessage);
         monBandeau.setMessage(monMessage);
+        monBandeau.setBackground(couleurBackground);
         
         for (int i = 0; i < zoomMax ; i++) {
-		monBandeau.setFont(new Font(maPolice.getFontName(), maPolice.getStyle(), i));
+		monBandeau.setFont(new Font(policeMessage.getFontName(), policeMessage.getStyle(), i));
 		monBandeau.sleep(dureeZoomAffiche);
 	} 
     }

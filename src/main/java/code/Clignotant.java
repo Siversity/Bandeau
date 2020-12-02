@@ -12,20 +12,26 @@ public class Clignotant extends Effet {
     
     
     // Constructeur
-    public Clignotant(int dureeEffet, Color couleurEffet, int nbrClignotements) {
-        super(dureeEffet, couleurEffet);
+    public Clignotant(int dureeEffet, Color couleurBackground, int nbrClignotements) {
+        super(dureeEffet*1000, couleurBackground);
         this.nbrClignotements = nbrClignotements;
     }
     
     
     // lancerEffet()
     @Override
-    public void lancerEffet(Bandeau monBandeau, String monMessage, Font maPolice) {
-        int dureeTic = (dureeEffet*1000)/nbrClignotements;
+    public void lancerEffet(Bandeau monBandeau, InfoMessage infoMess) {
+        Font policeMessage = infoMess.getPolice();
+        Color couleurMessage = infoMess.getCouleur();
+        String monMessage = infoMess.getMessage();
+        
+        int dureeTic = dureeEffet/nbrClignotements;
         System.out.println("Clignotant");
-        monBandeau.setFont(maPolice);
-        monBandeau.setForeground(couleurEffet);
+        monBandeau.setFont(policeMessage);
+        monBandeau.setForeground(couleurMessage);
         monBandeau.setMessage(monMessage);
+        monBandeau.setBackground(couleurBackground);
+        
         for (int i = 0; i < nbrClignotements; i++) {
             System.out.println("    Boucle n°" + i);
             monBandeau.setMessage(monMessage);

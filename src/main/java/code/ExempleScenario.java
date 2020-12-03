@@ -46,13 +46,8 @@ public class ExempleScenario {
         Teletype e5 = new Teletype(4, Color.DARK_GRAY, SensAffichage.DROITE);
         
     // 6EME EFFET
-        InfoMessage m6 = new InfoMessage("Pendu test", new Font("Serif", Font.ITALIC, 50), Color.BLACK);
-        Pendu e6 = new Pendu(5, Color.WHITE);
-        
-        
-        Bandeau b = new Bandeau();
-        e6.lancerEffet(b, m6);
-        b.close();
+        InfoMessage m6 = new InfoMessage("Ce texte est un test", new Font("Serif", Font.ITALIC, 50), Color.BLACK);
+        Pendu e6 = new Pendu(4, Color.WHITE);
 
 
         // On rajoute les effets dans le scénario
@@ -61,8 +56,9 @@ public class ExempleScenario {
         s1.ajouterEffet(3, e3, m3);
         s1.ajouterEffet(4, e4, m4);
         s1.ajouterEffet(5, e5, m5);
+        s1.ajouterEffet(6, e6, m6);
 
-        // s1.lancerScenario();
+        s1.lancerScenario();
         
     }
     

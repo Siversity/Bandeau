@@ -29,11 +29,17 @@ public class Pendu extends Effet {
         
         // Variables
         int tailleMessage = monMessage.length();
+        
+        // On initialise un random qui permettra d'afficher aléatoirement les lettres du texte original à afficher
         Random r = new Random();
         int n = 0;
-        String messageAffiche = "";
+        
+        // On initialise des tableaux indexables contenant le message original et le message à afficher
         ArrayList<String> listeCaracteresMessageInitial = new ArrayList<>();
         ArrayList<String> listeCaracteresMessageAffiche = new ArrayList<>();
+        
+        // On initialise le message à afficher
+        String messageAffiche = "";
         for (int i = 0; i < tailleMessage; i++) {
             listeCaracteresMessageInitial.add(String.valueOf(monMessage.charAt(i)));
             if (monMessage.charAt(i) == ' ') {
@@ -52,18 +58,23 @@ public class Pendu extends Effet {
         
         // Effet pendu
         while (monMessage.equals(messageAffiche) == false) {
-            messageAffiche = ""; 
+            // On réinitialise le message partiel à afficher à l'état n
+            messageAffiche = "";
+            // On récupère une lettre aléatoire parmis la liste de lettres du message original
             n = r.nextInt(listeCaracteresMessageInitial.size());
             if (listeCaracteresMessageInitial.get(n).equals(" ") == false) {
+                // On transfère la lettre d'un tableau à l'autre
                 listeCaracteresMessageAffiche.set(n, listeCaracteresMessageInitial.get(n));
                 listeCaracteresMessageInitial.set(n, " ");
                 
+                // On ré-instance le message partiel avec la lettre récupérée en plus
                 for (int j = 0; j < tailleMessage; j++) {
                 messageAffiche = messageAffiche + listeCaracteresMessageAffiche.get(j);
                 }
                 monBandeau.setMessage(messageAffiche);
                 monBandeau.sleep(dureeEffet/tailleMessage);
             }
+            // Si le caractère récupéré est égale à un espace, on recommence
         }
     }
 }

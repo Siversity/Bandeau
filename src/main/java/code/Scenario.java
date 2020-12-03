@@ -1,8 +1,6 @@
 package code;
 
 import bandeau.Bandeau;
-import java.awt.Color;
-import java.awt.Font;
 import java.util.HashMap;
 
 public class Scenario {

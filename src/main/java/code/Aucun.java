@@ -16,10 +16,12 @@ public class Aucun extends Effet {
     // lancerEffet()
     @Override
     public void lancerEffet(Bandeau monBandeau, InfoMessage infoMess) {
+        // Info message
         Font policeMessage = infoMess.getPolice();
         Color couleurMessage = infoMess.getCouleur();
         String monMessage = infoMess.getMessage();
         
+        // Affichage bandeau
         monBandeau.setFont(policeMessage);
         monBandeau.setForeground(couleurMessage);
         monBandeau.setMessage(monMessage);

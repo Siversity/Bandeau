@@ -19,18 +19,22 @@ public class Zoom extends Effet {
     
     @Override
     public void lancerEffet(Bandeau monBandeau, InfoMessage infoMess) {
+        // Info message
         Font policeMessage = infoMess.getPolice();
         Color couleurMessage = infoMess.getCouleur();
         String monMessage = infoMess.getMessage();
         
+        // Variables
         int zoomMax = policeMessage.getSize()*puissanceZoom;
         int dureeZoomAffiche = dureeEffet/zoomMax;
         
+        // Affichage bandeau
         monBandeau.setFont(policeMessage);
         monBandeau.setForeground(couleurMessage);
         monBandeau.setMessage(monMessage);
         monBandeau.setBackground(couleurBackground);
         
+        // Effet zoom
         for (int i = 0; i < zoomMax ; i++) {
 		monBandeau.setFont(new Font(policeMessage.getFontName(), policeMessage.getStyle(), i));
 		monBandeau.sleep(dureeZoomAffiche);

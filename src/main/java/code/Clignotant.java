@@ -21,17 +21,21 @@ public class Clignotant extends Effet {
     // lancerEffet()
     @Override
     public void lancerEffet(Bandeau monBandeau, InfoMessage infoMess) {
+        // Variable
+        int dureeTic = dureeEffet/nbrClignotements;
+        
+        // Info message
         Font policeMessage = infoMess.getPolice();
         Color couleurMessage = infoMess.getCouleur();
         String monMessage = infoMess.getMessage();
         
-        int dureeTic = dureeEffet/nbrClignotements;
-        System.out.println("Clignotant");
+        // Affichage bandeau
         monBandeau.setFont(policeMessage);
         monBandeau.setForeground(couleurMessage);
         monBandeau.setMessage(monMessage);
         monBandeau.setBackground(couleurBackground);
         
+        // Effet clignotement
         for (int i = 0; i < nbrClignotements; i++) {
             System.out.println("    Boucle n°" + i);
             monBandeau.setMessage(monMessage);

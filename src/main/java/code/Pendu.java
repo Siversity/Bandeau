@@ -32,7 +32,6 @@ public class Pendu extends Effet {
         Random r = new Random();
         int n = 0;
         String messageAffiche = "";
-        String messageTemoin = "";
         ArrayList<String> listeCaracteresMessageInitial = new ArrayList<>();
         ArrayList<String> listeCaracteresMessageAffiche = new ArrayList<>();
         for (int i = 0; i < tailleMessage; i++) {
@@ -62,7 +61,6 @@ public class Pendu extends Effet {
                 for (int j = 0; j < tailleMessage; j++) {
                 messageAffiche = messageAffiche + listeCaracteresMessageAffiche.get(j);
                 }
-                messageTemoin = messageAffiche;
                 monBandeau.setMessage(messageAffiche);
                 monBandeau.sleep(dureeEffet/tailleMessage);
             }
